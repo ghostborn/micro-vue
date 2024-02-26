@@ -2,15 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>MiniVue-Demo</title>
 </head>
 <body>
-  <div id="app">
-    姓名
-  </div>
-  <script src="mini-vue.js"></script>
+<div id="app" test="1">
+  <p>姓名:{{name}}</p>
+  <p>年龄:{{age}}</p>
+  <button @click="increase">年龄+1</button>
+  <input v-model="age" :bind="name">
+  <button @click="sayHi">sayHi</button>
+</div>
+<script src="mini-vue.js"></script>
 </body>
 <script>
-
+  const vm = new MiniVue({
+    el: '#app',
+    data(){
+      return{
+        name: '小明',
+        age: 18,
+        obj:{
+          a:1
+        }
+      }
+    } ,
+    methods:{
+      increase(){
+        this.age++
+      },
+      sayHi() {
+        alert('hi')
+      }
+    },
+    watch: {
+      age() {
+        console.log('年龄变成了' + this.age)
+      }
+    }
+  })
 </script>
 </html>
